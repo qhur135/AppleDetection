@@ -6,7 +6,7 @@ MinneApple dataset을 이용해서 사과를 감지
 - Locations 저장 순서 [ ymin, xmin, ymax, xmax ]
 
 
-[ Done_List ]
+## Done_List
 1. Ground Truth
  - test 데이터의 mask 이용 (168개의 이미지)
  - mask 데이터 : 이미지의 픽셀값, 좌표 제공
@@ -22,9 +22,9 @@ MinneApple dataset을 이용해서 사과를 감지
 
 
 
-[ TODO_List ]
+## TODO_List
 1. 논문 읽기 - Recall, Precision 어떻게 구했나 확인
-2. Precision 구하기
-3. Recall 제대로 구한거 맞는지 확인
-4. PR 곡선 그리기
-5. AP 그리기
+1. Precision 구하기
+1. Recall 제대로 구한거 맞는지 확인
+1. PR 곡선 그리기
+1. AP 그리기
