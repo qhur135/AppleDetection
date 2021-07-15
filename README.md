@@ -23,8 +23,4 @@ MinneApple dataset을 이용해서 사과를 감지
 
 
 ## TODO_List
-1. 논문 읽기 - Recall, Precision 어떻게 구했나 확인
-1. Precision 구하기
-1. Recall 제대로 구한거 맞는지 확인
-1. PR 곡선 그리기
 1. AP 그리기
