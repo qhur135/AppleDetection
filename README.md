@@ -22,5 +22,7 @@ MinneApple dataset을 이용해서 사과를 감지
 
 
 
+
 ## TODO_List
-1. AP 그리기
+1. AP 구하기
+https://github.com/Cartucho/mAP 코드 참고
