@@ -112,7 +112,10 @@ def solve(threshold):
                 break
 
         if max_iou >= threshold:  # 겹치는 부분이 50% 이상
+            print(max_iou)
             precision_top += 1
+
+
 
     return np.round((recall_top / len(gt_lines)) * 100, 3), np.round((precision_top/len(pred_lines))*100,3)
 
