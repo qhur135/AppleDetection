@@ -27,9 +27,6 @@ MinneApple dataset을 이용해서 사과를 감지
  
 5. Thresholds에 따른 Recall의 변화 
 
-
-
-
-## TODO_List
-1. AP 구하기
+6. AP 구하기
 https://github.com/Cartucho/mAP 코드 참고
+AP_yolov5x > yolov5x-results폴더 - thresholds별 AP, recall, precision 결과
