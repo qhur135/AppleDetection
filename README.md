@@ -29,4 +29,5 @@ MinneApple dataset을 이용해서 사과를 감지
 
 6. AP 구하기
 https://github.com/Cartucho/mAP 코드 참고
-AP_yolov5x > yolov5x-results폴더 - thresholds별 AP, recall, precision 결과
+AP_yolov5 > yolov5x-results폴더 - thresholds별 AP, recall, precision 결과
+- AP_yolov5 > input > detection-results - yolov5x 예측 좌표
