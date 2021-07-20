@@ -7,7 +7,7 @@ import os
 import cv2
 
 # Model
-model = torch.hub.load('ultralytics/yolov5', 'yolov5l')
+model = torch.hub.load('ultralytics/yolov5', 'yolov5m')
 
 '''
 # Images
@@ -16,7 +16,7 @@ img1 = Image.open('C:/MinneApple/detection.tar/detection/train/images/*')  # PIL
 imgs = [img1]  # batch of images
 '''
 
-ROOT_PATH = 'minneapple/test/images'
+ROOT_PATH = './Data/test/images'
 
 for fname in os.listdir(ROOT_PATH):
     # Inference
@@ -27,7 +27,7 @@ for fname in os.listdir(ROOT_PATH):
     results.print()
     results.show()  # or .show()
 
-    save_file = './yolo_results_l.txt'
+    save_file = './yolov5-results-m-xy.txt'
 
     with open(save_file,'a') as f:
         f.write(results)
