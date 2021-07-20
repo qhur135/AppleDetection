@@ -7,7 +7,7 @@ import os
 import cv2
 
 # Model
-model = torch.hub.load('ultralytics/yolov5', 'yolov5m')
+model = torch.hub.load('ultralytics/yolov5', 'yolov5x')
 
 '''
 # Images
@@ -27,7 +27,7 @@ for fname in os.listdir(ROOT_PATH):
     results.print()
     results.show()  # or .show()
 
-    save_file = './yolov5-results-m-xy.txt'
+    save_file = './yolov-x.txt'
 
     with open(save_file,'a') as f:
         f.write(results)

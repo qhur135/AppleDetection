@@ -9,7 +9,7 @@ import math
 
 import numpy as np
 
-MINOVERLAP = 0.3 # default value (defined in the PASCAL VOC2012 challenge)
+MINOVERLAP = 1.0 # default value (defined in the PASCAL VOC2012 challenge)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-na', '--no-animation', help="no animation is shown.", action="store_true")
@@ -48,7 +48,7 @@ GT_PATH = os.path.join(os.getcwd(), 'input', 'ground-truth')
 DR_PATH = os.path.join(os.getcwd(), 'input', 'detection-results')
 # if there are no images then no animation can be shown
 IMG_PATH = os.path.join(os.getcwd(), 'input', 'images-optional')
-if os.path.exists(IMG_PATH): 
+if os.path.exists(IMG_PATH):
     for dirpath, dirnames, files in os.walk(IMG_PATH):
         if not files:
             # no image files found
@@ -82,12 +82,10 @@ def log_average_miss_rate(prec, rec, num_images):
         log-average miss rate:
             Calculated by averaging miss rates at 9 evenly spaced FPPI points
             between 10e-2 and 10e0, in log-space.
-
         output:
                 lamr | log-average miss rate
                 mr | miss rate
                 fppi | false positives per image
-
         references:
             [1] Dollar, Piotr, et al. "Pedestrian Detection: An Evaluation of the
                State of the Art." Pattern Analysis and Machine Intelligence, IEEE
@@ -244,7 +242,7 @@ def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, out
     sorted_dic_by_value = sorted(dictionary.items(), key=operator.itemgetter(1))
     # unpacking the list of tuples into two lists
     sorted_keys, sorted_values = zip(*sorted_dic_by_value)
-    # 
+    #
     if true_p_bar != "":
         """
          Special case to draw in:
@@ -307,7 +305,7 @@ def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, out
     dpi = fig.dpi
     height_pt = n_classes * (tick_font_size * 1.4) # 1.4 (some spacing)
     height_in = height_pt / dpi
-    # compute the required figure height 
+    # compute the required figure height
     top_margin = 0.15 # in percentage of the figure height
     bottom_margin = 0.05 # in percentage of the figure height
     figure_height = height_in / (1 - top_margin - bottom_margin)
