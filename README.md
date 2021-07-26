@@ -33,5 +33,5 @@ AP_yolov5 > yolov5x-results폴더 - thresholds별 AP, recall, precision 결과
 - AP_yolov5 > input > detection-results - yolov5x 예측 좌표
 
 7. gt 잘구했는지 확인하는 코드
- check_gt.py -> ground-truth 좌표로 이미지에 바운딩 박스를 그리는 코드
+- check_gt.py -> ground-truth 좌표로 이미지에 바운딩 박스를 그리는 코드
  
