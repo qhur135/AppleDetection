@@ -60,7 +60,7 @@ https://github.com/Cartucho/mAP 코드 참고
 - red : frcnn predict
 - blue : yolov5x predict
 
-![사본 -results](https://user-images.githubusercontent.com/67954861/127120041-d6cd57b6-45a4-425b-89f9-356a0ccdc31b.png)
+## 8. confidence Top10 뽑아서 바운딩박스 그리기
 
 
 
