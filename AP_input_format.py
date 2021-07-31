@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 
-for file in os.listdir('./result'):
+for file in os.listdir('./result-csv'):
     new_csv = []
-    with open(f'./result/{file}') as f:
+    with open(f'./result-csv/{file}') as f:
         for index, line in enumerate(f.readlines()):
             if index == 0:
                 continue
@@ -14,4 +14,5 @@ for file in os.listdir('./result'):
                 tmp[idx] = str(round(float(tmp[idx])))
             new_csv.append(' '.join(tmp))
     new_csv = pd.DataFrame(np.array(new_csv))
-    new_csv.to_csv(f'./result_tmp/{file}', header=False, index=False)
+    filename = file.split(".")[0]
+    new_csv.to_csv(f'./result-tmp/{filename}.txt', header=False, index=False)
