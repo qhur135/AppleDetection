@@ -15,7 +15,10 @@ MinneApple dataset을 이용해서 사과를 감지
 ---
 
 ## TODO_List
-- yolov5 성능 향상을 위해 예측할 때 이미지의 크기를 줄이지 않고 예측하는 것 시도하기
+1. apple 아닌 것 빼고 confidence topk 뽑아서 성능 측정
+2. k 바꿔가면서 성능 측정
+3. 바운딩 박스 유교수님이랑 맞추기
+4. 욜로 다시 학습 - 원래 test 데이터 mask 만들어서 다시 학습시키기 
 
 
 ---
@@ -43,24 +46,36 @@ MinneApple dataset을 이용해서 사과를 감지
 &rarr; Location > yolov5-results 폴더에 저장
 
 
-## 4. IOU 구하기 
-
-
-## 5. Thresholds에 따른 Recall의 변화 
-
-
-## 6. AP 구하기 
+## 4. AP 구하기 
 https://github.com/Cartucho/mAP 코드 참고
 
 
 
-## 7. 이미지에 바운딩박스 그리기 
+## 5. 이미지에 바운딩박스 그리기 
 - draw_box.py &rarr; gt좌표 잘 구했는지 확인함. rcnn, yolov5 얼마나 잘찾는지 확인함.
 - green : ground-truth
 - red : frcnn predict
 - blue : yolov5x predict
 
-## 8. confidence Top10 뽑아서 바운딩박스 그리기
+
+## 6. yolov5x 이미지 크기 1280으로 바꾸고 예측하기 
+(원래는 이미지 크기 640으로 예측함) 
+
+Thresholds에 따른 AP 
+|thresholds(iou)|yolov5x(size=1280)AP|
+|:---------:|:----------:|
+|0.0|46.34%|
+|0.1|46.26%|
+|0.2|46.05%|
+|0.3|45.25%|
+|0.4|43.12%|
+|0.5|39.91%|
+|0.6|34.98%|
+|0.7|26.78%|
+|0.8|12.89%
+|0.9|0.96%|
+|1.0|0.00%|
+
 
 
 
