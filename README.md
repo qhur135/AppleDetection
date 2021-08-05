@@ -64,12 +64,13 @@ MinneApple dataset을 이용해서 사과를 감지
 ## 4. AP 구하기 
 - yolo_predict.py 실행하면 csv 파일로 좌표 얻을 수 있음 (csv로 저장하는 것이 더 빠르기 때문) 
 - 얻은 좌표를 AP_input_format.py에 넣으면 AP 구하는 input format 만들어짐, txt 파일로 저장되도록 함
-https://github.com/Cartucho/mAP 코드 참고
-
+- getAP > main.py AP 구하는 코드 
+- main.py 코드 돌리기 전에 getAP > input 파일 형식 맞추기 &rarr; https://github.com/Cartucho/mAP 참고
+- output에 결과 저장
 
 
 ## 5. 이미지에 바운딩박스 그리기 
-- draw_box.py &rarr; gt좌표 잘 구했는지 확인함. rcnn, yolov5 얼마나 잘찾는지 확인함.
+- draw_box.py 코드 &rarr; gt좌표 잘 구했는지 확인함. rcnn, yolov5 얼마나 잘찾는지 확인함.
 - green : ground-truth
 - red : frcnn predict
 - blue : yolov5 predict
