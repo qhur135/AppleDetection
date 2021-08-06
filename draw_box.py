@@ -2,9 +2,9 @@ from random import *
 import numpy as np
 import cv2, os
 
-img_path = "./img"
-save_path = "./box"
-pred_path = "./location"
+img_path = "./real-apple/image"
+pred_path = "./real-apple/location/yolov5x-1280"
+save_path = "./real-apple/box"
 
 
 # color
@@ -14,7 +14,7 @@ red = (0,0,255)
 white = (255,255,255)
 
 img_list = os.listdir(img_path)
-pred_list = os.listdir(pred_path)
+#pred_list = os.listdir(pred_path)
 
 
 # gt bounding box
@@ -27,7 +27,7 @@ for i in range(len(img_list)):
 
     # cv2.imshow('image',img)
     # cv2.waitKey(0)
-    pred_file_name = pred_list[i]
+    pred_file_name = img_list[i].split('.')[0]+".txt"
     loc = open(pred_path + '/' + pred_file_name, 'r')
     lines = loc.readlines()
 
