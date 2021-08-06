@@ -39,16 +39,16 @@ for i in range(len(img_list)):
         img = cv2.imread(save_name, cv2.IMREAD_COLOR)
         l = line.split(' ')
         name = l[0]
-        confidence = l[1]
+        confidence = round(float(l[1]),2)
         ymin = int(l[2])
         xmin = int(l[3])
         ymax = int(l[4])
         xmax = int(l[5])
-        info=k+" "+name+" "+confidence
-        image = cv2.rectangle(np.array(img), (xmin, ymin), (xmax, ymax), (b,g,r), 2)
-        image = cv2.rectangle(image,(xmin-10, ymin-10),(xmax+10,ymax),(b,g,r),-1)
-        image = cv2.putText(image,info,(xmin-10,ymin-30),cv2.FONT_HERSHEY_PLAIN,0.6,white,2)
-        cv2.imshow('image',image)
+        info=str(k)+" "+name+" "+str(confidence)
+        image = cv2.rectangle(np.array(img), (ymin, xmin), (ymax, xmax), (b,g,r), 2)
+        #image = cv2.rectangle(image,(xmin-10, ymin-10),(xmax+10,ymax),(b,g,r),-1)
+        image = cv2.putText(image,info,(ymin,xmin-10),cv2.FONT_HERSHEY_PLAIN,1.5,white,2)
+        #cv2.imshow('image',image)
         k+=1
-        #cv2.imwrite(save_name,image)
+        cv2.imwrite(save_name,image)
         cv2.waitKey(0)
