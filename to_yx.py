@@ -1,7 +1,7 @@
 import os
 
-path_dir = "./Locations/for_get_AP_yx/ground-truth"
-save_dir = "./Locations/for_get_AP_yx/ground-truth2"
+path_dir = "./Locations/for_get_AP_yx/yolov5x-1280"
+save_dir = "./Locations/for_get_AP_yx/yolov5x-1280-2"
 file_list = os.listdir(path_dir)
 
 for i in range(len(file_list)):
@@ -18,4 +18,4 @@ for i in range(len(file_list)):
         # for i in range(4):
         #     list[i+1]=str(round(float(list[i+1])))
         #print(f'{name} {list[2]} {list[1]} {list[4]} {list[3]}\n')
-        save.write(f'{name} {list[2]} {list[1]} {list[4]} {list[3]}\n')
+        save.write(f'{name} {list[1]} {list[3]} {list[2]} {list[5]} {list[4]}\n')
