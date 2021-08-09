@@ -9,7 +9,7 @@ import math
 
 import numpy as np
 
-MINOVERLAP = 0.5 # default value (defined in the PASCAL VOC2012 challenge)
+MINOVERLAP = 0.5 #default value (defined in the PASCAL VOC2012 challenge)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-na', '--no-animation', help="no animation is shown.", action="store_true")
@@ -45,7 +45,7 @@ if args.set_class_iou is not None:
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 GT_PATH = os.path.join(os.getcwd(), 'input', 'ground-truth')
-DR_PATH = os.path.join(os.getcwd(), 'input', 'detection-results')
+DR_PATH = os.path.join(os.getcwd(), 'input', 'rcnn-top40')
 # if there are no images then no animation can be shown
 IMG_PATH = os.path.join(os.getcwd(), 'input', 'images-optional')
 if os.path.exists(IMG_PATH):
@@ -502,6 +502,7 @@ with open(output_files_path + "/output.txt", 'w') as output_file:
     output_file.write("# AP and precision/recall per class\n")
     count_true_positives = {}
     for class_index, class_name in enumerate(gt_classes):
+        rank = 1
         count_true_positives[class_name] = 0
         """
          Load detection-results of that class
@@ -516,6 +517,7 @@ with open(output_files_path + "/output.txt", 'w') as output_file:
         tp = [0] * nd # creates an array of zeros of size nd
         fp = [0] * nd
         for idx, detection in enumerate(dr_data):
+           
             file_id = detection["file_id"]
             if show_animation:
                 # find ground truth image
@@ -548,6 +550,7 @@ with open(output_files_path + "/output.txt", 'w') as output_file:
             # load detected object bounding-box
             bb = [ float(x) for x in detection["bbox"].split() ]
             for obj in ground_truth_data:
+            
                 # look for a class_name match
                 if obj["class_name"] == class_name:
                     bbgt = [ float(x) for x in obj["bbox"].split() ]
@@ -632,15 +635,18 @@ with open(output_files_path + "/output.txt", 'w') as output_file:
                 img, line_width = draw_text_in_image(img, text, (margin + line_width, v_pos), color, line_width)
 
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                if ovmax > 0: # if there is intersections between the bounding-boxes
-                    bbgt = [ int(round(float(x))) for x in gt_match["bbox"].split() ]
-                    cv2.rectangle(img,(bbgt[0],bbgt[1]),(bbgt[2],bbgt[3]),light_blue,2)
-                    cv2.rectangle(img_cumulative,(bbgt[0],bbgt[1]),(bbgt[2],bbgt[3]),light_blue,2)
-                    cv2.putText(img_cumulative, class_name, (bbgt[0],bbgt[1] - 5), font, 0.6, light_blue, 1, cv2.LINE_AA)
+                #if ovmax > 0: # if there is intersections between the bounding-boxes
+                #    bbgt = [ int(round(float(x))) for x in gt_match["bbox"].split() ]
+                #    cv2.rectangle(img,(bbgt[0],bbgt[1]),(bbgt[2],bbgt[3]),light_blue,2)
+                #    cv2.rectangle(img_cumulative,(bbgt[0],bbgt[1]),(bbgt[2],bbgt[3]),light_blue,2)
+                #    cv2.putText(img_cumulative, class_name, (bbgt[0],bbgt[1] - 5), font, 0.6, light_blue, 1, cv2.LINE_AA)
                 bb = [int(i) for i in bb]
                 cv2.rectangle(img,(bb[0],bb[1]),(bb[2],bb[3]),color,2)
                 cv2.rectangle(img_cumulative,(bb[0],bb[1]),(bb[2],bb[3]),color,2)
-                cv2.putText(img_cumulative, class_name, (bb[0],bb[1] - 5), font, 0.6, color, 1, cv2.LINE_AA)
+                confidence = round(float(detection["confidence"]),2)
+                info = str(rank)+" "+class_name+" "+str(confidence)
+                cv2.putText(img_cumulative, info, (bb[0],bb[1] - 5), font, 0.6, color, 1, cv2.LINE_AA)
+                rank+=1                
                 # show image
                 cv2.imshow("Animation", img)
                 cv2.waitKey(20) # show for 20 ms
@@ -653,6 +659,9 @@ with open(output_files_path + "/output.txt", 'w') as output_file:
         #print(tp)
         # compute precision/recall
         cumsum = 0
+        rec_sum=0
+        prec_sum=0
+        cnt=0
         for idx, val in enumerate(fp):
             fp[idx] += cumsum
             cumsum += val
@@ -664,11 +673,23 @@ with open(output_files_path + "/output.txt", 'w') as output_file:
         rec = tp[:]
         for idx, val in enumerate(tp):
             rec[idx] = float(tp[idx]) / gt_counter_per_class[class_name]
+            #rec[idx]=float(tp[idx])/5
+            rec_sum +=rec[idx]
+            cnt+=1
+        aver_recall = round(rec_sum/cnt,4)
+        print("average recall:"+str(aver_recall))
         #print(rec)
+        cnt=0
         prec = tp[:]
         for idx, val in enumerate(tp):
             prec[idx] = float(tp[idx]) / (fp[idx] + tp[idx])
+            prec_sum +=prec[idx]
+            cnt+=1
+        aver_prec = round(prec_sum/cnt,4)
+        print("average precision:"+str(aver_prec))
         #print(prec)
+        f1_score = round((aver_recall * aver_prec)/(aver_recall+aver_prec)*2,4)
+        print("average f1-score:"+str(f1_score))
 
         ap, mrec, mprec = voc_ap(rec[:], prec[:])
         sum_AP += ap
