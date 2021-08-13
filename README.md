@@ -27,10 +27,10 @@ MinneApple dataset을 이용해서 사과를 감지
 ---
 
 ## TODO_List
-1. apple 아닌 것 빼고 confidence topk 뽑아서 성능 측정
-2. k 바꿔가면서 성능 측정
-3. 바운딩 박스 유교수님과 맞추기
-4. 욜로 다시 학습 - 원래 test 데이터 mask 만들어서 다시 학습시키기 
+1. 예측 좌표와 GT좌표 매칭시키기 -> TopK에 따른 성능 층정
+2. COCO eval로 성능 측정
+3. frcnn으로 실제 데이터 예측하기
+4. yolo 학습하기
 
 
 ---
