@@ -67,7 +67,7 @@ MinneApple dataset을 이용해서 사과를 감지
 - getAP > main.py AP 구하는 코드 
 - main.py 코드 돌리기 전에 getAP > input 파일 형식 맞추기 &rarr; https://github.com/Cartucho/mAP 참고
 - output에 결과 저장
-
+- coco ap https://github.com/bes-dev/mean_average_precision
 
 ## 5. 이미지에 바운딩박스 그리기 
 - draw_box.py 코드 &rarr; gt좌표 잘 구했는지 확인함. rcnn, yolov5 얼마나 잘찾는지 확인함.
