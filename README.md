@@ -1,5 +1,8 @@
 # MinneApple Detection
 
+2021 KSC 논문 게재 
+https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11036055
+
 MinneApple dataset을 이용해서 사과를 감지   
 데이터셋 다운로드: https://conservancy.umn.edu/handle/11299/206575
 
